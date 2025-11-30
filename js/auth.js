@@ -1,4 +1,3 @@
-// URL DEL BACKEND EN RENDER
 const API = "https://alertavecinalhuancayo.onrender.com/api/auth";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -8,12 +7,15 @@ document.addEventListener("DOMContentLoaded", () => {
     login.addEventListener("submit", async e => {
       e.preventDefault();
 
+      const emailInput = document.getElementById("email");
+      const passwordInput = document.getElementById("password");
+
       const res = await fetch(`${API}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: email.value,
-          password: password.value
+          email: emailInput.value,
+          password: passwordInput.value
         })
       });
 
@@ -32,16 +34,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const register = document.getElementById("registerForm");
   if (register) {
+
     register.addEventListener("submit", async e => {
       e.preventDefault();
+
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email");
+      const passwordInput = document.getElementById("password");
 
       const res = await fetch(`${API}/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: name.value,
-          email: email.value,
-          password: password.value
+          name: nameInput.value,
+          email: emailInput.value,
+          password: passwordInput.value
         })
       });
 
