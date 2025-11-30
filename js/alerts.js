@@ -1,12 +1,15 @@
-const API = "http://localhost:4000/api/alerts";
+// URL del backend en Render
+const API = "https://alertavecinalhuancayo.onrender.com/api/alerts";
 const token = localStorage.getItem("token");
 
 document.addEventListener("DOMContentLoaded", () => {
-  
+
   const list = document.getElementById("alertList");
 
   fetch(API, {
-    headers: { "Authorization": "Bearer " + token }
+    headers: {
+      "Authorization": "Bearer " + token
+    }
   })
   .then(r => r.json())
   .then(data => {

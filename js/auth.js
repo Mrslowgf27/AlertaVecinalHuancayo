@@ -1,4 +1,5 @@
-const API = "http://localhost:4000/api/auth";
+// URL DEL BACKEND EN RENDER
+const API = "https://alertavecinalhuancayo.onrender.com/api/auth";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -17,16 +18,17 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const data = await res.json();
+      console.log("LOGIN:", data);
+
       if (data.token) {
         localStorage.setItem("token", data.token);
         alert("Login correcto");
         location.href = "index.html";
       } else {
-        alert("Credenciales incorrectas");
+        alert(data.message || "Credenciales incorrectas");
       }
     });
   }
-
 
   const register = document.getElementById("registerForm");
   if (register) {
@@ -44,8 +46,14 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const data = await res.json();
-      alert("Registro exitoso");
-      location.href = "login.html";
+      console.log("REGISTER:", data);
+
+      if (res.ok) {
+        alert("Registro exitoso");
+        location.href = "login.html";
+      } else {
+        alert(data.message || "Error al registrarse");
+      }
     });
   }
 
